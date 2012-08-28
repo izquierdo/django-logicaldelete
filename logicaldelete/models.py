@@ -1,5 +1,5 @@
-from datetime import datetime
 from django.db import models
+from django.utils import timezone
 
 
 class LogicalDeletedManager(models.Manager):
@@ -38,7 +38,7 @@ class LogicalDeleteModel(models.Model):
     active.boolean = True
 
     def delete(self):
-        self.date_removed = datetime.now()
+        self.date_removed = timezone.now()
         self.save()
 
     class Meta:
@@ -50,8 +50,8 @@ class AuditModel(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.date_created:
-            self.date_created = datetime.now()
-        self.date_modified = datetime.now()
+            self.date_created = timezone.now()
+        self.date_modified = timezone.now()
         super(AuditModel, self).save(*args, **kwargs)
 
     class Meta:
