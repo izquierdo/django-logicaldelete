@@ -1,0 +1,6 @@
+Django
+argparse
+distribute
+django-nose
+nose
+wsgiref
