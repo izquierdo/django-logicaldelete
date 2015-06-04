@@ -3,7 +3,7 @@ from django.utils import timezone
 
 
 class LogicalDeletedManager(models.Manager):
-    def get_query_set(self):
+    def get_queryset(self):
         if self.model:
             return super(LogicalDeletedManager, self).get_query_set().filter(date_removed__isnull=True)
 
